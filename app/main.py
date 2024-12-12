@@ -4,10 +4,9 @@ from starlette.middleware.cors import CORSMiddleware
 from fastapi.testclient import TestClient
 from pydantic import AnyHttpUrl, BaseSettings, EmailStr, validator
 from typing import List, Optional, Union
-from fastapi import APIRouter
 import os
 
-import algo
+from app.router import api_router
 
 
 class Settings(BaseSettings):
@@ -50,10 +49,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-api_router = APIRouter()
-
-api_router.include_router(algo.router, prefix="/algo", tags=["algo"])
 
 
 app.include_router(api_router, prefix=settings.API_V1_STR)

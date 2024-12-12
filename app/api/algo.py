@@ -3,12 +3,13 @@ from typing import Union
 from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
-from base import ResponseModel, MultiResponseModel
 from enum import Enum
-
 import jieba
 import jieba.posseg
 import jieba.analyse
+
+from app.api.base import ResponseModel, MultiResponseModel
+
 
 router = APIRouter()
 
