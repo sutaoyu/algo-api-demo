@@ -62,14 +62,20 @@ def fetch_keywords(
     """
     单个句子的关键词提取
     """
-    keywords = get_keywords(input.input_sentence, input.algo_type)
-    if not keywords:
+    try:
+        keywords = get_keywords(input.input_sentence, input.algo_type)
+        if not keywords:
+            raise HTTPException(
+                status_code=404, detail=f"keywords of {input.input_sentence} not found"
+            )
+        result = {
+            "keywords_list": keywords,
+            "input_sentence": input.input_sentence,
+            "algo_type": input.algo_type,
+        }
+        return ResponseModel(code=200, msg="ok", data=result)
+    except Exception as e:
         raise HTTPException(
-            status_code=404, detail=f"keywords of {input.input_sentence} not found"
-        )
-    result = {
-        "keywords_list": keywords,
-        "input_sentence": input.input_sentence,
-        "algo_type": input.algo_type,
-    }
-    return ResponseModel(code=200, msg="ok", data=result)
+            status_code=500,
+            detail=f"文本处理过程中发生错误: {str(e)}"
+        )    
