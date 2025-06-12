@@ -23,7 +23,7 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
-    PROJECT_NAME: str = "Algo-Api-Backend"
+    PROJECT_NAME: str = "Algo_Backend"
     home_dir = os.path.abspath(
         os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     )

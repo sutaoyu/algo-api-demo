@@ -10,7 +10,7 @@ OLD_NAME="$1"
 NEW_NAME="$2"
 
 # 定义需要修改的文件列表
-FILES=("run_app.sh" "stop_app.sh" "gunicorn.py")
+FILES=("run_app.sh" "stop_app.sh" "gunicorn.py" "app/main.py")
 
 # 遍历每个文件并进行替换
 for file in "${FILES[@]}"; do
