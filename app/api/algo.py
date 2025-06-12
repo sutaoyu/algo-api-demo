@@ -2,7 +2,7 @@ from typing import Any, List
 from typing import Union
 from fastapi import APIRouter, Body, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, validator
 from enum import Enum
 import jieba
 import jieba.posseg
@@ -14,13 +14,28 @@ from app.api.base import ResponseModel, MultiResponseModel
 router = APIRouter()
 
 
+class TextInputBase(BaseModel):
+    input_sentence: str = Field(
+        ...,
+        min_length=1,
+        max_length=2000,
+        description="需要处理的原始文本",
+        example="我爱北京天安门💳 0 👤"
+    )
+    @validator('input_sentence')
+    def validate_input(cls, v):
+        if not v.strip():
+            raise ValueError("输入文本不能为空或仅包含空白字符")
+        return v
+
+
 class KeyworkdsAlgoType(str, Enum):
     TF_IDF = "TF-IDF"
     Text_Rank = "TextRank"
 
 
-class KeywordsInputBase(BaseModel):
-    input_sentence: str
+# 集成自TextInputBase
+class KeywordsInputBase(TextInputBase):
     algo_type: KeyworkdsAlgoType
 
 
