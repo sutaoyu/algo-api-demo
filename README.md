@@ -8,6 +8,23 @@
 
     - 以实现关键词提取接口为例 
 
+
+
+# 项目名称修改
+
+- 执行下列命令
+
+```
+./rename_project.sh <old_name> <new_name>
+```
+
+主要实现在下面文件中修改名称：
+- `run_app.sh`中修改`Algo_Backend`
+- `stop_app.sh`中修改`Algo_Backend`
+- `gunncorn.py`中修改`Algo_Banckend`
+
+
+
 # 环境配置
 
 ```
