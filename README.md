@@ -9,7 +9,6 @@
     - 以实现关键词提取接口为例 
 
 
-
 # 项目名称修改
 
 - 执行下列命令
@@ -22,6 +21,7 @@
 - `run_app.sh`中修改`Algo_Backend`
 - `stop_app.sh`中修改`Algo_Backend`
 - `gunncorn.py`中修改`Algo_Banckend`
+- `app/main.py`中修改`Algo_Banckend`
 
 
 
